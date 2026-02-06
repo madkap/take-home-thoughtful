@@ -48,12 +48,25 @@ const Card = ({question}: CardType) => {
 }
 
 const App = () => {
+  const placeholderText = 'Ask: What percentage does plan cover for co-insurance on durable medical equipment?';
+  const [showPrompt, setShowPrompt] = useState(false);
   const [questions, setQuestions] = useState([chooseRandomQuestion()]);
+  const [promptValue, setPromptValue] = useState(placeholderText);
+
+  const handleSave = () => {
+    if (promptValue.trim()) {
+      console.log('promptValue:', promptValue);
+      setQuestions(prev => [...prev, promptValue]);
+      setPromptValue(placeholderText);
+      setShowPrompt(false);
+    }
+  };
+  
   return (
     <>
       <header>
         <span>Workflow Builder</span>
-        <button onClick={() => setQuestions(prev => [...prev, chooseRandomQuestion()])}>
+        <button onClick={() => setShowPrompt(true)}>
           <Plus size="16" color="#fff" />
           <span className="button-text">Add Node</span>
         </button>
@@ -69,10 +82,39 @@ const App = () => {
             )
           })
         }
-
       </main>
+      <aside style={{ display: `${showPrompt ? 'block' : 'none'}` }} >
+        <div className="question-header">
+          <MessageCircleQuestionMark />
+          <span className="card-header-text">Question</span>
+
+        </div>
+        <div className="question-prompt">
+          <label htmlFor="prompt">Prompt:</label>
+
+          <textarea
+            id="prompt"
+            name="prompt"
+            className="question-card__textarea"
+            rows={4}
+            value={promptValue}
+            onChange={(e) => setPromptValue(e.target.value)}
+          />
+        </div>
+        <div className="question-actions">
+          <button 
+            type="button"
+            className="question-close"
+            onClick={() => setShowPrompt(false)}
+          >
+            Close
+          </button>
+          <button type="button" onClick={handleSave}>Save</button>
+        </div>
+      </aside>
     </>
   )
 };
 
 export default App
+

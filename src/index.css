@@ -127,3 +127,47 @@ main {
   border-right: 6px solid transparent;
   border-top: 8px solid #7c3aed;
 }
+
+aside {
+  position: fixed;
+  right: 0;
+  top: 51px;
+  border: 1px solid grey;
+  bottom: 0;
+  width: 473px;
+}
+
+.question-header{
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px 8px;
+}
+
+.question-prompt{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 8px;
+}
+.question-prompt label {
+  text-align: left;
+  margin-bottom: 8px;
+}
+.question-prompt textarea {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: #fff;
+  color: #0A0A0A;
+}
+.question-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 16px 8px;
+}
+.question-close {
+    color: #0A0A0A;
+    background-color: #fff;
+
+}
